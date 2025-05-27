@@ -52,8 +52,8 @@ app.get("/api/articles", (request, response) => {
     response.json(articles)
 })
 
-app.use((request, repsonse) => {
-    response.status(404).sendFile(__dirname + "/views/not-found-html")
+app.use((request, response) => {
+    response.status(404).sendFile(__dirname + "/views/not-found.html")
 })
 
 
