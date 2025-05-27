@@ -1,8 +1,15 @@
+
+
 // IMPORT PACKAGES
 // Here you should import the required packages for your Express app: `express` and `morgan`
 
 const express = require("express")
 const logger = require("morgan")
+
+//This is how you import data from within the same files
+const articles = require ("./data/articles.json")
+const projects = require ("./data/projects.json")
+
 
 
 
@@ -10,6 +17,7 @@ const logger = require("morgan")
 // Here you should create your Express app:
 
 const app = express()
+
 
 
 
@@ -34,6 +42,18 @@ app.get("/", (request, response) => {
 app.get("/blog",(request, response) => {
     console.log(request);
     response.send("<h1> Welcome User, this is the blog page </h1>")
+})
+
+app.get("/api/projects", (request, response) => {
+    response.json(projects)
+})
+
+app.get("/api/articles", (request, response) => {
+    response.json(articles)
+})
+
+app.use((request, repsonse) => {
+    response.status(404).sendFile(__dirname + "/views/not-found-html")
 })
 
 
